@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Auroun AI Hub - Auroun DataSYN</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0b1120;
+    color:white;
+}
+
+/* ---------------- HEADER ---------------- */
+.header{
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+.status{
+    text-align:center;
+    color:#94a3b8;
+    margin-top:-10px;
+    margin-bottom:10px;
+}
+
+/* ---------------- GRID ---------------- */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:20px;
+}
+
+/* ---------------- CARD ---------------- */
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+/* ---------------- BUTTON ---------------- */
+.btn{
+    display:block;
+    margin:10px 0;
+    padding:12px;
+    text-align:center;
+    background:#2563eb;
+    color:white;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+/* ---------------- INSIGHTS ---------------- */
+pre{
+    white-space:pre-wrap;
+    background:#0f172a;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+/* ---------------- SMALL TEXT ---------------- */
+.small{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    🚀 Auroun AI Control Center
+</div>
+
+<div class="status">
+    Dataset Loaded ✔ | AI Engine Active ✔ | Analytics Ready ✔
+</div>
+
+<!-- MAIN GRID -->
+<div class="grid">
+
+    <!-- LEFT PANEL -->
+    <div class="card">
+
+        <h2>📊 Quick Stats</h2>
+
+        <p class="small">Selected Column: {{ selected_col }}</p>
+
+        <p><b>Mean:</b> {{ stats.mean }}</p>
+        <p><b>Min:</b> {{ stats.min }}</p>
+        <p><b>Max:</b> {{ stats.max }}</p>
+
+        <hr style="border:1px solid #334155; margin:10px 0;">
+
+        <h3>⚡ Navigation</h3>
+
+        <a class="btn" href="/dashboard">📊 Open Dashboard</a>
+        <a class="btn" href="/analytics">📈 Open Analytics</a>
+        <a class="btn" href="/chat">💬 Open AI Chat</a>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="card">
+
+        <h2>🧠 AI Insights</h2>
+
+        <pre>{{ insights }}</pre>
+
+        <hr style="border:1px solid #334155; margin:15px 0;">
+
+        <h3>📄 Export System</h3>
+
+        <p class="small">
+            Download full AI report including dataset summary, insights, and statistical breakdown.
+        </p>
+
+        <a class="btn" href="/download-report">📥 Download PDF Report</a>
+
+        <a class="btn" href="/upload">🔄 Upload New Dataset</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
