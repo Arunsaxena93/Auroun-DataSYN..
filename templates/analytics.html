@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Analytics | Auroun DataSYN</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0b1120;
+    color:white;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+.sub{
+    text-align:center;
+    color:#94a3b8;
+    margin-top:-10px;
+}
+
+/* STATS BOX */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.box{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.box h3{
+    color:#60a5fa;
+}
+
+/* TABLE */
+.table-container{
+    padding:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#111827;
+}
+
+th, td{
+    padding:10px;
+    border:1px solid #334155;
+    text-align:left;
+}
+
+th{
+    background:#1e293b;
+    color:#60a5fa;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    margin:20px;
+    padding:10px 15px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    📊 Analytics Dashboard
+</div>
+
+<div class="sub">
+    Auroun DataSYN - AI Data Summary
+</div>
+
+<!-- STATS -->
+<div class="stats">
+
+    <div class="box">
+        <h3>Rows</h3>
+        <p>{{ rows }}</p>
+    </div>
+
+    <div class="box">
+        <h3>Columns</h3>
+        <p>{{ cols }}</p>
+    </div>
+
+    <div class="box">
+        <h3>Missing Values</h3>
+        <p>{{ missing }}</p>
+    </div>
+
+</div>
+
+<!-- TABLE -->
+<div class="table-container">
+    <h2>📈 Statistical Summary</h2>
+
+    {{ summary | safe }}
+</div>
+
+<!-- NAV -->
+<a class="btn" href="/hub">⬅ Back to Hub</a>
+<a class="btn" href="/dashboard">📊 Dashboard</a>
+
+</body>
+</html>
