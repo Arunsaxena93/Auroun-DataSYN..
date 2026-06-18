@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Auroun AI Chat | Arun Saxena</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b1120;
+    color:white;
+    min-height:100vh;
+}
+
+/* Navbar */
+.navbar{
+    background:#020617;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#60a5fa;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    padding:10px 20px;
+    border-radius:10px;
+}
+
+/* Chat Container */
+.chat-wrapper{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.chat-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.chat-header h1{
+    font-size:48px;
+    color:#60a5fa;
+}
+
+.chat-header p{
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+/* Chat Box */
+.chat-box{
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:25px;
+    height:500px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    scroll-behavior:smooth;
+}
+
+/* Messages */
+.user-message{
+    background:#2563eb;
+    padding:15px;
+    border-radius:15px;
+    max-width:80%;
+    margin-left:auto;
+    animation:fadeIn 0.3s ease;
+}
+
+.bot-message{
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
+    max-width:80%;
+    align-self:flex-start;
+    animation:fadeIn 0.3s ease;
+}
+
+/* Chart image */
+.bot-message img{
+    margin-top:10px;
+    max-width:100%;
+    border-radius:10px;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Typing effect */
+.typing{
+    font-style:italic;
+    opacity:0.7;
+}
+
+.typing::after{
+    content:" ...";
+    animation:dots 1s infinite;
+}
+
+@keyframes dots{
+    0%{content:" .";}
+    50%{content:" ..";}
+    100%{content:" ...";}
+}
+
+/* Input */
+.input-area{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.input-area input{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+.input-area button{
+    padding:16px 30px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.input-area button:hover{
+    background:#1d4ed8;
+}
+
+/* Suggestions */
+.suggestions{
+    margin-top:25px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.suggestions button{
+    background:#1e293b;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+.suggestions button:hover{
+    background:#334155;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🤖 Auroun AI Chat</div>
+    <a href="/dashboard" class="back-btn">Dashboard</a>
+</div>
+
+<!-- CHAT -->
+<div class="chat-wrapper">
+
+    <div class="chat-header">
+        <h1>Ask Your Data</h1>
+        <p>AI-powered dataset assistant by Arun Saxena</p>
+    </div>
+
+    <div class="chat-box" id="chatBox">
+
+        <div class="bot-message">
+            👋 Hi! Ask me about your dataset.
+        </div>
+
+        <div class="bot-message">
+            Try: average, max, min, summary, chart
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-area">
+        <input id="userInput" type="text" placeholder="Ask anything...">
+        <button onclick="sendMessage()">Ask AI</button>
+    </div>
+
+    <!-- QUICK SUGGESTIONS -->
+    <div class="suggestions">
+        <button onclick="quickAsk('average')">Average</button>
+        <button onclick="quickAsk('max')">Max</button>
+        <button onclick="quickAsk('min')">Min</button>
+        <button onclick="quickAsk('summary')">Summary</button>
+        <button onclick="quickAsk('chart')">Chart</button>
+    </div>
+
+</div>
+
+<script>
+
+function scrollChat(){
+    let box = document.getElementById("chatBox");
+    box.scrollTo({
+        top: box.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+function addUserMessage(text){
+    let div = document.createElement("div");
+    div.className = "user-message";
+    div.innerText = text;
+    document.getElementById("chatBox").appendChild(div);
+    scrollChat();
+}
+
+function addBotMessage(text, chart=null){
+
+    let div = document.createElement("div");
+    div.className = "bot-message";
+
+    div.innerText = text;
+
+    if(chart){
+        let img = document.createElement("img");
+        img.src = chart;
+        div.appendChild(img);
+    }
+
+    document.getElementById("chatBox").appendChild(div);
+    scrollChat();
+}
+
+function sendMessage(){
+
+    let input = document.getElementById("userInput");
+    let text = input.value.trim();
+
+    if(text === "") return;
+
+    addUserMessage(text);
+    input.value = "";
+
+    // typing indicator
+    let typing = document.createElement("div");
+    typing.className = "bot-message typing";
+    typing.innerText = "AI is thinking";
+    document.getElementById("chatBox").appendChild(typing);
+
+    scrollChat();
+
+    fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        typing.remove();
+
+        if(!data.answer){
+            addBotMessage("No response from AI");
+            return;
+        }
+
+        addBotMessage(data.answer, data.chart || null);
+
+    })
+    .catch(err => {
+
+        typing.remove();
+        addBotMessage("⚠️ Error connecting to AI");
+
+    });
+}
+
+function quickAsk(text){
+    document.getElementById("userInput").value = text;
+    sendMessage();
+}
+
+// Enter key support
+document.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        sendMessage();
+    }
+});
+
+</script>
+
+</body>
+</html>
