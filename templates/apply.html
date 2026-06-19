@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apply Now | Auroun DataSYN</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b1220;
+    color:white;
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.form-card{
+    background:#111827;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9ca3af;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#1f2937;
+    color:white;
+    font-size:15px;
+}
+
+textarea{
+    resize:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    opacity:0.9;
+}
+
+.back-link{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#60a5fa;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="form-card">
+
+    <h1>Build the Future with Auroun DataSYN</h1>
+
+    <p class="subtitle">
+        Join our mission to transform data into intelligent business decisions.
+        Complete the application form below and become part of our growing team.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Current Location</label>
+            <input type="text" name="location">
+        </div>
+
+        <div class="form-group">
+            <label>Position Applying For</label>
+            <select name="position" required>
+                <option value="">Select Position</option>
+                <option>Data Analyst Intern</option>
+                <option>Frontend Developer</option>
+                <option>AI/ML Engineer</option>
+                <option>Business Analyst</option>
+                <option>Python Developer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Years of Experience</label>
+            <input type="number" name="experience" min="0">
+        </div>
+
+        <div class="form-group">
+            <label>Upload Resume</label>
+            <input type="file" name="resume" required>
+        </div>
+
+        <div class="form-group">
+            <label>Why do you want to join Auroun DataSYN?</label>
+            <textarea name="message" rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Submit Application
+        </button>
+
+    </form>
+
+    <a href="/careers" class="back-link">
+        ← Back to Careers
+    </a>
+
+</div>
+```
+
+</div>
+
+</body>
+</html>
