@@ -45,6 +45,9 @@ def contact():
 def chat_page():
     return render_template("chat.html")
 
+@app.route("/apply")
+def apply():
+    return render_template("apply.html")
 
 # ---------------- LOAD DATA ----------------
 def load_data():
